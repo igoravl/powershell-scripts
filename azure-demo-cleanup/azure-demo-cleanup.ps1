@@ -2,7 +2,7 @@
 param (
     [Parameter(Mandatory = $true, Position = 0)]
     [guid[]]
-    $SubscriptionIds = @('93a87285-3629-4b5e-bd88-22b1c62fa1d2'),
+    $SubscriptionIds,
 
     [Parameter()]
     [string]
