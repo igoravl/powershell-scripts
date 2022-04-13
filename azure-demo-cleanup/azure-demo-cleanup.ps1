@@ -200,11 +200,11 @@ foreach ($sub in $SubscriptionIds) {
     Write-Host "`n=== Deleting resource groups ===`n"
     
     $rgDeletionList `
-    | Foreach-Object { Write-Host $_.name; Remove-AzResourceGroup -Name $_.name -WhatIf | Out-Null }
+    | Foreach-Object { Write-Host $_.name; Remove-AzResourceGroup -Name $_.name -WhatIf:(-not $Force.IsPresent) | Out-Null }
 
     # Delete all individual resources in the deletion list
     Write-Host "`n=== Deleting individual resources ===`n"
     
     $objDeletionList `
-    | Foreach-Object { Write-Host $_.name; Remove-AzResource -ResourceId $_.Id -WhatIf }
+    | Foreach-Object { Write-Host $_.name; Remove-AzResource -ResourceId $_.Id -WhatIf:(-not $Force.IsPresent) }
 }
